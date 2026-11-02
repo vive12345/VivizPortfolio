@@ -31,5 +31,10 @@ export default function usePlayer(tracks) {
     else audio.pause();
   };
 
-  return { track: tracks[index], playing, toggle };
+  const next = () => {
+    started.current = true;
+    setIndex((i) => (i + 1) % tracks.length);
+  };
+
+  return { track: tracks[index], playing, toggle, next };
 }
