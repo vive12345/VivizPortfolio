@@ -66,7 +66,7 @@ export default function FluidCursor() {
 
   useEffect(() => {
     const canvas = canvasRef.current;
-    const gl = canvas.getContext('webgl2', { premultipliedAlpha: true, antialias: false, depth: false });
+    const gl = canvas.getContext('webgl2', { antialias: false, depth: false });
     if (!gl?.getExtension('EXT_color_buffer_float')) return;
 
     const shader = (type, src) => {

@@ -1,0 +1,22 @@
+{
+  "tracks": [
+    {
+      "title": "Fluffing a Duck",
+      "src": "/music/fluffing-a-duck.mp3",
+      "color": "#F59E0B",
+      "credit": "\"Fluffing a Duck\" Kevin MacLeod (incompetech.com) · CC BY 4.0"
+    },
+    {
+      "title": "Monkeys Spinning Monkeys",
+      "src": "/music/monkeys-spinning-monkeys.mp3",
+      "color": "#10B981",
+      "credit": "\"Monkeys Spinning Monkeys\" Kevin MacLeod (incompetech.com) · CC BY 4.0"
+    },
+    {
+      "title": "Sneaky Snitch",
+      "src": "/music/sneaky-snitch.mp3",
+      "color": "#8B5CF6",
+      "credit": "\"Sneaky Snitch\" Kevin MacLeod (incompetech.com) · CC BY 4.0"
+    }
+  ]
+}

@@ -1,5 +1,5 @@
 import { ArrowRight, BriefcaseBusiness, ChevronRight, Layers, PartyPopper, Smile, UserSearch } from 'lucide-react';
-import FluidCursor from '../components/FluidCursor';
+import Avatar from '../components/Avatar';
 import data from '../data/home.json';
 
 const icons = { Smile, BriefcaseBusiness, Layers, PartyPopper, UserSearch };
@@ -7,8 +7,6 @@ const icons = { Smile, BriefcaseBusiness, Layers, PartyPopper, UserSearch };
 export default function Home() {
   return (
     <main className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-4 pb-24">
-      <FluidCursor />
-
       <span className="pointer-events-none absolute bottom-0 -z-20 translate-y-1/4 select-none text-[22vw] font-black leading-none text-neutral-100">
         {data.watermark}
       </span>
@@ -21,7 +19,7 @@ export default function Home() {
       <h2 className="text-xl font-semibold sm:text-2xl">{data.greeting}</h2>
       <h1 className="text-5xl font-extrabold tracking-tight sm:text-7xl">{data.title}</h1>
 
-      <img src={data.avatar} alt={data.title} className="my-6 h-56 w-auto object-contain sm:h-72" />
+      <Avatar src={data.avatar} label={data.greeting} className="my-6 size-56 sm:size-72" />
 
       <form onSubmit={(e) => e.preventDefault()} className="flex w-full max-w-xl items-center rounded-full border border-neutral-200 bg-white py-2 pl-6 pr-2 shadow-sm">
         <input placeholder={data.placeholder} className="flex-1 bg-transparent outline-none placeholder:text-neutral-500" />

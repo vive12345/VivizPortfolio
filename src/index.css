@@ -1,5 +1,32 @@
 @import "tailwindcss";
 
+@theme {
+  --animate-float: float 4s ease-in-out infinite;
+  --animate-breathe: breathe 5s ease-in-out infinite;
+  --animate-wave: wave 2s ease-in-out 0.4s;
+
+  @keyframes float {
+    50% { transform: translateY(-8px); }
+  }
+  @keyframes breathe {
+    50% { transform: translateY(-4px) scale(1.01); }
+  }
+  /* Plays once on page load: two gentle sways, then the hand rests. */
+  @keyframes wave {
+    0%, 100% { transform: rotate(0); }
+    20%, 60% { transform: rotate(5deg); }
+    40%, 80% { transform: rotate(-3deg); }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   @apply bg-white text-neutral-900 antialiased;
 }
