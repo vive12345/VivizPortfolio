@@ -11,8 +11,8 @@ export default function About() {
 
   return (
     <section id="me" className="relative scroll-mt-8 px-6 pb-28 pt-[14vw]">
-      {/* Light green dotted pattern that fades in from the middle of the section and out at its end. */}
-      <div className="absolute inset-x-0 bottom-0 top-1/2 -z-30 bg-emerald-50 bg-[radial-gradient(#6ee7b7_1.5px,transparent_1.5px)] bg-size-[22px_22px] [mask-image:linear-gradient(transparent,black_12rem,black_calc(100%-8rem),transparent)]" />
+      {/* Light green background that fades in from the middle of the section and out at its end. */}
+      <div className="absolute inset-x-0 bottom-0 top-1/2 -z-30 bg-emerald-50 [mask-image:linear-gradient(transparent,black_12rem,black_calc(100%-8rem),transparent)]" />
 
       <div className="mx-auto grid max-w-6xl items-center gap-14 md:grid-cols-[1.25fr_1fr]">
         <div>

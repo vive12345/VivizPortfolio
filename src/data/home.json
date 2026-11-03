@@ -8,8 +8,8 @@
   "placeholder": "Ask me anything...",
   "quickLinks": [
     { "label": "Me", "icon": "Smile", "color": "text-teal-600", "href": "#me" },
-    { "label": "Projects", "icon": "BriefcaseBusiness", "color": "text-green-700", "href": "#projects" },
-    { "label": "Skills", "icon": "Layers", "color": "text-indigo-600", "href": "#skills" },
+    { "label": "Experience", "icon": "BriefcaseBusiness", "color": "text-green-700", "href": "#experience" },
+    { "label": "Projects", "icon": "Layers", "color": "text-indigo-600", "href": "#projects" },
     { "label": "Fun", "icon": "PartyPopper", "color": "text-fuchsia-600", "href": "#fun" },
     { "label": "Contact", "icon": "UserSearch", "color": "text-amber-600", "href": "#contact" }
   ]
