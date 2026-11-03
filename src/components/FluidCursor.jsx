@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 
 // WebGL2 stable-fluids simulation: the cursor injects velocity + colour, which then swirls and fades.
+// Fills its nearest positioned parent, so the effect stays inside that section.
 const CONFIG = {
   simRes: 128,
   dyeRes: 1024,
@@ -118,13 +119,13 @@ export default function FluidCursor() {
 
     const resize = () => {
       const dpr = Math.min(devicePixelRatio, 2);
-      canvas.width = innerWidth * dpr;
-      canvas.height = innerHeight * dpr;
+      canvas.width = canvas.clientWidth * dpr;
+      canvas.height = canvas.clientHeight * dpr;
     };
     resize();
 
     const gridSize = (res) => {
-      const aspect = innerWidth / innerHeight;
+      const aspect = canvas.clientWidth / canvas.clientHeight;
       return aspect > 1 ? [Math.round(res * aspect), res] : [res, Math.round(res / aspect)];
     };
     const [w, h] = gridSize(CONFIG.simRes);
@@ -160,10 +161,15 @@ export default function FluidCursor() {
 
     let last;
     const onMove = (e) => {
-      const x = e.clientX / innerWidth;
-      const y = 1 - e.clientY / innerHeight;
+      const rect = canvas.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width;
+      const y = 1 - (e.clientY - rect.top) / rect.height;
+      if (y < 0 || y > 1) {
+        last = null;
+        return;
+      }
       if (last) {
-        const aspect = innerWidth / innerHeight;
+        const aspect = rect.width / rect.height;
         const radius = (CONFIG.splatRadius / 100) * Math.max(aspect, 1);
         const force = [(x - last.x) * CONFIG.splatForce, (y - last.y) * CONFIG.splatForce, 0];
         const color = hueColor((performance.now() / 1000) * CONFIG.colorSpeed);
@@ -178,6 +184,8 @@ export default function FluidCursor() {
     const loop = (now) => {
       const dt = Math.min((now - prev) / 1000, 0.016);
       prev = now;
+      frame = requestAnimationFrame(loop);
+      if (canvas.getBoundingClientRect().bottom < 0) return; // scrolled out of view: save the GPU
       run('curl', { v: velocity.read }, curl);
       step('vorticity', { v: velocity.read, c: curl, curl: CONFIG.curl, dt }, velocity);
       run('divergence', { v: velocity.read }, divergence);
@@ -187,7 +195,6 @@ export default function FluidCursor() {
       step('advect', { v: velocity.read, s: velocity.read, dt, dissipation: CONFIG.velocityDissipation }, velocity);
       step('advect', { v: velocity.read, s: dye.read, dt, dissipation: CONFIG.densityDissipation }, dye);
       run('display', { t: dye.read });
-      frame = requestAnimationFrame(loop);
     };
     frame = requestAnimationFrame(loop);
 
@@ -200,5 +207,5 @@ export default function FluidCursor() {
     };
   }, []);
 
-  return <canvas ref={canvasRef} className="pointer-events-none fixed inset-0 -z-10 size-full" />;
+  return <canvas ref={canvasRef} className="pointer-events-none absolute inset-0 -z-10 size-full" />;
 }

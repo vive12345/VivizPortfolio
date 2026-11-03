@@ -1,13 +1,16 @@
 import { ArrowRight, BriefcaseBusiness, ChevronRight, Layers, PartyPopper, Smile, UserSearch } from 'lucide-react';
 import Avatar from '../components/Avatar';
+import FluidCursor from '../components/FluidCursor';
 import data from '../data/home.json';
 
 const icons = { Smile, BriefcaseBusiness, Layers, PartyPopper, UserSearch };
 
 export default function Home() {
   return (
-    <main className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-4 pb-24">
-      <span className="pointer-events-none absolute bottom-0 -z-20 translate-y-1/4 select-none text-[22vw] font-black leading-none text-neutral-100">
+    <main className="relative flex min-h-screen flex-col items-center justify-center px-4 pb-24">
+      <FluidCursor />
+      {/* Half of the name sits here; the other half spills into the About section below. */}
+      <span className="pointer-events-none absolute bottom-0 -z-20 translate-y-1/2 select-none text-[22vw] font-black leading-none text-neutral-100">
         {data.watermark}
       </span>
 
