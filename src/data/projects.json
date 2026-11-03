@@ -1,0 +1,17 @@
+{
+  "number": "04",
+  "heading": "Projects",
+  "linkLabel": "View project",
+  "projects": [
+    {
+      "title": "AI ChatBot",
+      "subtitle": "Industrial Project for Auto BIM Route and Mintplex Labs",
+      "stack": ["Python", "Django", "React", "LLMs", "RAG", "VectorDB"],
+      "link": "https://github.com/your-username/your-project",
+      "points": [
+        "Owned the end-to-end document ingestion pipeline by building a Python REST endpoint on API Gateway and Lambda that validated and stored uploads in Amazon S3, improving experience and productivity",
+        "Built and integrated a speaking avatar into a React frontend using Hugging Face model inference and browser-based TTS for lip-sync, eliminating **$3,000/month** in licensing costs"
+      ]
+    }
+  ]
+}

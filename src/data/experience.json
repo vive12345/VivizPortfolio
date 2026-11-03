@@ -1,11 +1,11 @@
 {
-  "number": "02",
+  "number": "03",
   "heading": "Experience",
   "jobs": [
     {
       "role": "Full Stack Developer",
       "company": "SaayamForAll",
-      "period": "02/2026 – Present",
+      "period": "Feb 2026 — Present",
       "points": [
         "Implement a Python AI module to summarize user file attachments using LangChain and LLMs, exposed via RESTful API endpoints for frontend integration, reducing manual review time from **10 min to 2 min**",
         "Deploy an AI classification service on AWS Lambda using LLMs and prompting to sort help requests into **50+ subcategories**",
@@ -15,7 +15,7 @@
     {
       "role": "Software Developer",
       "company": "Arizona State University",
-      "period": "12/2024 – 12/2025",
+      "period": "Dec 2024 — Dec 2025",
       "points": [
         "Engineered an event-driven AWS workflow (Lambda, SQS, DLQ) with asynchronous message processing that auto-routes student inquiries to correct departments, reducing follow-up time from **5 days to 1 day**",
         "Developed REST APIs to automate CRM imports, processing **10K+ requests** and cutting manual setup time from **3600s to 10s**",
@@ -26,7 +26,7 @@
     {
       "role": "Software Engineer",
       "company": "Rapidise",
-      "period": "05/2023 – 12/2023",
+      "period": "May 2023 — Dec 2023",
       "points": [
         "Developed & scaled data infrastructure powering dashboard for a multi-million-dollar payment platform serving **2k+ payouts**",
         "Designed REST APIs in Kotlin/Smithy, using AWS Cognito & CloudFormation to streamline infrastructure & improve reliability",
@@ -36,7 +36,7 @@
     {
       "role": "Software Developer",
       "company": "EzTechStack",
-      "period": "01/2023 – 04/2023",
+      "period": "Jan 2023 — Apr 2023",
       "points": [
         "Built a Java e-commerce microservice on Spring Boot and Hibernate ORM, for a platform serving **266K+ monthly active users**",
         "Optimized Elasticsearch queries and Redis cache to cut API response time by **10%** while lowering database load at peak traffic",

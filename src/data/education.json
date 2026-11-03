@@ -1,0 +1,16 @@
+{
+  "number": "02",
+  "heading": "Education",
+  "schools": [
+    {
+      "school": "Arizona State University",
+      "degree": "Master of Science in Software Engineering",
+      "period": "Jan 2024 — Dec 2025"
+    },
+    {
+      "school": "Indus University",
+      "degree": "Bachelor of Technology in Computer Science",
+      "period": "Aug 2019 — May 2023"
+    }
+  ]
+}
