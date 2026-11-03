@@ -13,5 +13,6 @@
     { "icon": "leetcode", "label": "LeetCode", "href": "https://leetcode.com/u/your-username" }
   ],
   "footer": "© 2026 Vipsa Kamani",
+  "updated": "Last updated",
   "backToTop": "Back to top ↑"
 }

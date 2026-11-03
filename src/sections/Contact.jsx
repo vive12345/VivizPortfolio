@@ -1,4 +1,4 @@
-import { ArrowRight, ArrowUpRight, CalendarDays, Mail } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, CalendarDays, Coffee, Mail } from 'lucide-react';
 import SectionHeading from '../components/SectionHeading';
 import data from '../data/contact.json';
 
@@ -29,15 +29,15 @@ export default function Contact() {
             <h3 className="text-3xl font-semibold leading-tight tracking-tight sm:text-4xl">{data.title}</h3>
             <p className="mt-5 max-w-md leading-relaxed text-neutral-600">{data.text}</p>
             <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4">
-              <a href={data.calendly} target="_blank" rel="noreferrer" className="group inline-flex items-center gap-3 rounded-full bg-neutral-900 py-3 pl-6 pr-3 text-sm font-medium text-white transition-colors hover:bg-emerald-700">
+              {/* Solid button with a soft inner highlight; the arrow slides forward on hover. */}
+              <a href={data.calendly} target="_blank" rel="noreferrer" className="group inline-flex h-11 items-center gap-2.5 rounded-lg bg-neutral-900 px-5 text-sm font-medium tracking-wide text-white shadow-[inset_0_1px_0_rgb(255_255_255/0.12),0_1px_2px_rgb(0_0_0/0.2),0_8px_20px_-8px_rgb(0_0_0/0.4)] transition hover:bg-neutral-800 hover:shadow-[inset_0_1px_0_rgb(255_255_255/0.12),0_1px_2px_rgb(0_0_0/0.2),0_12px_24px_-8px_rgb(0_0_0/0.5)] active:scale-[0.98]">
+                <Coffee size={16} className="text-white/70" />
                 {data.coffeeChat}
-                <span className="grid size-7 place-items-center rounded-full bg-white/15 transition-transform group-hover:translate-x-0.5">
-                  <ArrowRight size={14} />
-                </span>
+                <ArrowRight size={15} className="-ml-0.5 text-white/70 transition-transform duration-300 group-hover:translate-x-1 group-hover:text-white" />
               </a>
               {/* Text link with an underline that draws in on hover. */}
-              <a href={data.calendly} target="_blank" rel="noreferrer" className="group relative inline-flex items-center gap-2 py-1 text-sm font-medium">
-                <CalendarDays size={16} className="text-neutral-500" />
+              <a href={data.calendly} target="_blank" rel="noreferrer" className="group relative inline-flex items-center gap-2.5 py-1 text-base font-medium">
+                <CalendarDays size={19} className="text-neutral-500" />
                 {data.bookMeeting}
                 <span className="absolute inset-x-0 -bottom-0.5 h-px origin-left scale-x-0 bg-neutral-900 transition-transform duration-300 group-hover:scale-x-100" />
               </a>
@@ -62,7 +62,9 @@ export default function Contact() {
         </div>
 
         <footer className="mt-28 flex flex-wrap justify-between gap-2 border-t border-neutral-900/10 pt-6 text-xs text-neutral-500">
-          <span>{data.footer}</span>
+          <span>
+            {data.footer} · {data.updated} {__UPDATED__}
+          </span>
           <a href="#" className="transition-colors hover:text-neutral-900">{data.backToTop}</a>
         </footer>
       </div>
