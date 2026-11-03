@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Code2, Palette, Server } from 'lucide-react';
+import SectionHeading from '../components/SectionHeading';
 import data from '../data/about.json';
 
 const icons = { Code2, Palette, Server };
@@ -10,15 +11,12 @@ export default function About() {
 
   return (
     <section id="me" className="relative scroll-mt-8 px-6 pb-28 pt-[14vw]">
-      {/* Light green dotted pattern that fades in from the middle of the section. */}
-      <div className="absolute inset-x-0 bottom-0 top-1/2 -z-30 bg-emerald-50 bg-[radial-gradient(#6ee7b7_1.5px,transparent_1.5px)] bg-size-[22px_22px] [mask-image:linear-gradient(transparent,black_12rem)]" />
+      {/* Light green dotted pattern that fades in from the middle of the section and out at its end. */}
+      <div className="absolute inset-x-0 bottom-0 top-1/2 -z-30 bg-emerald-50 bg-[radial-gradient(#6ee7b7_1.5px,transparent_1.5px)] bg-size-[22px_22px] [mask-image:linear-gradient(transparent,black_12rem,black_calc(100%-8rem),transparent)]" />
 
       <div className="mx-auto grid max-w-6xl items-center gap-14 md:grid-cols-[1.25fr_1fr]">
         <div>
-          <p className="flex items-center gap-3 text-sm font-bold tracking-widest text-emerald-600">
-            {data.number} <span className="h-px w-10 bg-emerald-600" />
-          </p>
-          <h2 className="mt-2 text-5xl font-extrabold uppercase tracking-tight sm:text-6xl">{data.heading}</h2>
+          <SectionHeading number={data.number}>{data.heading}</SectionHeading>
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-neutral-600">{data.intro}</p>
 
           <p className="mt-8 font-semibold">{data.expertiseTitle}</p>
