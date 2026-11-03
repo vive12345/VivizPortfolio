@@ -1,22 +1,28 @@
 {
   "tracks": [
     {
-      "title": "Fluffing a Duck",
-      "src": "/music/fluffing-a-duck.mp3",
+      "title": "Snap",
+      "src": "/music/snap.mp3",
+      "color": "#EC4899",
+      "credit": "Rosa Linn"
+    },
+    {
+      "title": "See Tình (Cukak Remix)",
+      "src": "/music/see-tinh.mp3",
       "color": "#F59E0B",
-      "credit": "\"Fluffing a Duck\" Kevin MacLeod (incompetech.com) · CC BY 4.0"
+      "credit": "Hoàng Thùy Linh · Cukak Remix"
     },
     {
-      "title": "Monkeys Spinning Monkeys",
-      "src": "/music/monkeys-spinning-monkeys.mp3",
-      "color": "#10B981",
-      "credit": "\"Monkeys Spinning Monkeys\" Kevin MacLeod (incompetech.com) · CC BY 4.0"
+      "title": "Shibuya Crossing Rain",
+      "src": "/music/shibuya-crossing-rain.mp3",
+      "color": "#06B6D4",
+      "credit": "Neo City Pop"
     },
     {
-      "title": "Sneaky Snitch",
-      "src": "/music/sneaky-snitch.mp3",
+      "title": "Dracula (JENNIE Remix)",
+      "src": "/music/dracula.mp3",
       "color": "#8B5CF6",
-      "credit": "\"Sneaky Snitch\" Kevin MacLeod (incompetech.com) · CC BY 4.0"
+      "credit": "Tame Impala · JENNIE"
     }
   ]
 }
