@@ -1,5 +1,5 @@
 {
-  "number": "05",
+  "number": "06",
   "heading": "Contact",
   "title": "Let's build something together.",
   "text": "I'm open to full-time Software Engineering roles and always happy to chat about new ideas, projects or opportunities. My inbox is always open.",
@@ -11,8 +11,5 @@
     { "icon": "linkedin", "label": "LinkedIn", "href": "https://www.linkedin.com/in/your-profile" },
     { "icon": "github", "label": "GitHub", "href": "https://github.com/vive12345" },
     { "icon": "leetcode", "label": "LeetCode", "href": "https://leetcode.com/u/your-username" }
-  ],
-  "footer": "© 2026 Vipsa Kamani",
-  "updated": "Last updated",
-  "backToTop": "Back to top ↑"
+  ]
 }

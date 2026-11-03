@@ -1,0 +1,18 @@
+{
+  "number": "05",
+  "heading": "Fun",
+  "title": "Bug Smash",
+  "text": "Squash as many bugs as you can in 30 seconds. Golden bugs are worth 3 points. Set the highest score and your name goes to the top of the leaderboard.",
+  "score": "Score",
+  "time": "Time",
+  "yourScore": "Your score",
+  "namePrompt": "Pick a game name",
+  "randomName": "Random name",
+  "start": "Start game",
+  "again": "Play again",
+  "leaderboard": "Leaderboard",
+  "champion": "Highest score",
+  "empty": "No scores yet. Be the first!",
+  "adjectives": ["Turbo", "Sneaky", "Cosmic", "Pixel", "Async", "Recursive", "Lazy", "Quantum", "Spicy", "Silent", "Binary", "Mighty"],
+  "animals": ["Penguin", "Otter", "Panda", "Falcon", "Koala", "Narwhal", "Llama", "Fox", "Gecko", "Capybara", "Octopus", "Tiger"]
+}

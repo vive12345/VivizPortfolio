@@ -17,7 +17,7 @@ const icons = {
 
 export default function Contact() {
   return (
-    <section id="contact" className="relative scroll-mt-8 px-6 pb-10 pt-28">
+    <section id="contact" className="relative scroll-mt-8 px-6 pb-12 pt-28">
       {/* Light green background that fades in, matching the About section. */}
       <div className="absolute inset-0 -z-30 bg-emerald-50 [mask-image:linear-gradient(transparent,black_16rem)]" />
 
@@ -60,13 +60,6 @@ export default function Contact() {
             })}
           </ul>
         </div>
-
-        <footer className="mt-28 flex flex-wrap justify-between gap-2 border-t border-neutral-900/10 pt-6 text-xs text-neutral-500">
-          <span>
-            {data.footer} · {data.updated} {__UPDATED__}
-          </span>
-          <a href="#" className="transition-colors hover:text-neutral-900">{data.backToTop}</a>
-        </footer>
       </div>
     </section>
   );

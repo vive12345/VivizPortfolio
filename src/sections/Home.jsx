@@ -1,9 +1,9 @@
-import { ArrowRight, BriefcaseBusiness, GraduationCap, Layers, PartyPopper, Smile, UserSearch } from 'lucide-react';
+import { ArrowRight, BriefcaseBusiness, Gift, GraduationCap, Layers, PartyPopper, Smile, UserSearch } from 'lucide-react';
 import Avatar from '../components/Avatar';
 import FluidCursor from '../components/FluidCursor';
 import data from '../data/home.json';
 
-const icons = { Smile, GraduationCap, BriefcaseBusiness, Layers, PartyPopper, UserSearch };
+const icons = { Smile, GraduationCap, BriefcaseBusiness, Layers, PartyPopper, Gift, UserSearch };
 
 export default function Home() {
   return (

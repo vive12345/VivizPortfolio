@@ -4,9 +4,13 @@
   --animate-float: float 4s ease-in-out infinite;
   --animate-breathe: breathe 5s ease-in-out infinite;
   --animate-wave: wave 2s ease-in-out 0.4s;
+  --animate-pop: pop 0.2s ease-out;
 
   @keyframes float {
     50% { transform: translateY(-8px); }
+  }
+  @keyframes pop {
+    from { transform: scale(0); }
   }
   @keyframes breathe {
     50% { transform: translateY(-4px) scale(1.01); }
