@@ -1,0 +1,17 @@
+{
+  "number": "03",
+  "heading": "Contact",
+  "title": "Let's build something together.",
+  "text": "I'm open to full-time Software Engineering roles and always happy to chat about new ideas, projects or opportunities. My inbox is always open.",
+  "calendly": "https://calendly.com/your-username",
+  "coffeeChat": "Coffee chat",
+  "bookMeeting": "Book a meeting",
+  "links": [
+    { "icon": "mail", "label": "Email", "href": "mailto:your-email@example.com" },
+    { "icon": "linkedin", "label": "LinkedIn", "href": "https://www.linkedin.com/in/your-profile" },
+    { "icon": "github", "label": "GitHub", "href": "https://github.com/vive12345" },
+    { "icon": "leetcode", "label": "LeetCode", "href": "https://leetcode.com/u/your-username" }
+  ],
+  "footer": "© 2026 Vipsa Kamani",
+  "backToTop": "Back to top ↑"
+}

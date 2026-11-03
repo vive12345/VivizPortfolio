@@ -1,4 +1,4 @@
-import { ArrowRight, BriefcaseBusiness, ChevronRight, Layers, PartyPopper, Smile, UserSearch } from 'lucide-react';
+import { ArrowRight, BriefcaseBusiness, Layers, PartyPopper, Smile, UserSearch } from 'lucide-react';
 import Avatar from '../components/Avatar';
 import FluidCursor from '../components/FluidCursor';
 import data from '../data/home.json';
@@ -13,10 +13,6 @@ export default function Home() {
       <span className="pointer-events-none absolute bottom-0 -z-20 translate-y-1/2 select-none text-[22vw] font-black leading-none text-neutral-100">
         {data.watermark}
       </span>
-
-      <a href={data.badge.href} className="absolute left-6 top-6 flex items-center gap-2 rounded-full border border-neutral-200 bg-white px-4 py-2 text-sm font-medium shadow-sm hover:bg-neutral-50">
-        {data.badge.label} <ChevronRight size={16} />
-      </a>
 
       <div className="mb-3 grid size-14 place-items-center rounded-2xl bg-white text-2xl font-black shadow-md">{data.logo}</div>
       <h2 className="text-xl font-semibold sm:text-2xl">{data.greeting}</h2>
