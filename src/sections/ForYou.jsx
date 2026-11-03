@@ -22,7 +22,9 @@ export default function ForYou() {
   }, []);
 
   return (
-    <section ref={sectionRef} id="for-you" className="bg-emerald-50 px-6 pb-10 pt-16">
+    <section ref={sectionRef} id="for-you" className="relative px-6 pb-10 pt-16">
+      {/* Light green background that fades in from the game above. */}
+      <div className="absolute inset-0 -z-30 bg-emerald-50 [mask-image:linear-gradient(transparent,black_10rem)]" />
       <Confetti bursts={bursts} />
 
       <div className="mx-auto max-w-6xl">

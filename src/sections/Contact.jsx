@@ -17,9 +17,9 @@ const icons = {
 
 export default function Contact() {
   return (
-    <section id="contact" className="relative scroll-mt-8 px-6 pb-12 pt-28">
-      {/* Light green background that fades in, matching the About section. */}
-      <div className="absolute inset-0 -z-30 bg-emerald-50 [mask-image:linear-gradient(transparent,black_16rem)]" />
+    <section id="contact" className="relative scroll-mt-8 px-6 pb-28 pt-28">
+      {/* Light green background that fades in and out, matching the About section. */}
+      <div className="absolute inset-0 -z-30 bg-emerald-50 [mask-image:linear-gradient(transparent,black_16rem,black_calc(100%-8rem),transparent)]" />
 
       <div className="mx-auto max-w-6xl">
         <SectionHeading number={data.number}>{data.heading}</SectionHeading>

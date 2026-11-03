@@ -10,8 +10,8 @@
     { "label": "Education", "icon": "GraduationCap", "color": "text-sky-600", "href": "#education" },
     { "label": "Experience", "icon": "BriefcaseBusiness", "color": "text-green-700", "href": "#experience" },
     { "label": "Projects", "icon": "Layers", "color": "text-indigo-600", "href": "#projects" },
+    { "label": "Contact", "icon": "UserSearch", "color": "text-amber-600", "href": "#contact" },
     { "label": "Fun", "icon": "PartyPopper", "color": "text-fuchsia-600", "href": "#fun" },
-    { "label": "For You", "icon": "Gift", "color": "text-rose-500", "href": "#for-you" },
-    { "label": "Contact", "icon": "UserSearch", "color": "text-amber-600", "href": "#contact" }
+    { "label": "For You", "icon": "Gift", "color": "text-rose-500", "href": "#for-you" }
   ]
 }

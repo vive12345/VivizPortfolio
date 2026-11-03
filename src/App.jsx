@@ -16,8 +16,8 @@ export default function App() {
       <Education />
       <Experience />
       <Projects />
-      <Fun />
       <Contact />
+      <Fun />
       <ForYou />
       <MusicPlayer />
     </>
