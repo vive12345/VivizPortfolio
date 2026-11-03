@@ -8,9 +8,9 @@
   "intro": "I'm a software engineer who loves turning ideas into fast, friendly and reliable products. I enjoy working across the stack, from clean interfaces to the systems behind them.",
   "expertiseTitle": "My expertise across various areas",
   "expertise": [
-    { "icon": "Code2", "title": "Full-Stack Development", "text": "React, Node.js and modern tooling, from idea to deployment." },
-    { "icon": "Server", "title": "Backend & APIs", "text": "Clean, well-designed APIs and scalable backend systems." },
-    { "icon": "Palette", "title": "UI Engineering", "text": "Polished, accessible and interactive user interfaces." }
+    { "title": "Full-Stack Development", "text": "React, Node.js and modern tooling, from idea to deployment." },
+    { "title": "Backend & APIs", "text": "Clean, well-designed APIs and scalable backend systems." },
+    { "title": "UI Engineering", "text": "Polished, accessible and interactive user interfaces." }
   ],
   "more": "Outside of code, you'll find me exploring new music, travelling, and trying out creative side projects. I believe in learning something new every day and bringing curiosity and kindness to every team I'm part of."
 }

@@ -1,9 +1,7 @@
 import { useState } from 'react';
-import { Code2, Palette, Server } from 'lucide-react';
 import SectionHeading from '../components/SectionHeading';
 import data from '../data/about.json';
 
-const icons = { Code2, Palette, Server };
 const { photos } = data;
 
 export default function About() {
@@ -19,23 +17,16 @@ export default function About() {
           <SectionHeading number={data.number}>{data.heading}</SectionHeading>
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-neutral-600">{data.intro}</p>
 
-          <p className="mt-8 font-semibold">{data.expertiseTitle}</p>
+          <p className="mt-10 text-xs font-semibold uppercase tracking-widest text-neutral-500">{data.expertiseTitle}</p>
 
-          <ul className="mt-4 grid gap-3">
-            {data.expertise.map(({ icon, title, text }) => {
-              const Icon = icons[icon];
-              return (
-                <li key={title} className="flex items-start gap-4 rounded-2xl border border-neutral-200 bg-white p-4 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
-                  <span className="grid size-10 shrink-0 place-items-center rounded-xl bg-emerald-50 text-emerald-600">
-                    <Icon size={20} />
-                  </span>
-                  <span>
-                    <span className="block font-semibold">{title}</span>
-                    <span className="text-sm text-neutral-500">{text}</span>
-                  </span>
-                </li>
-              );
-            })}
+          {/* Plain rows separated by hairlines, matching Experience and Contact. */}
+          <ul className="mt-4 border-t border-neutral-900/10">
+            {data.expertise.map(({ title, text }) => (
+              <li key={title} className="grid gap-1 border-b border-neutral-900/10 py-4 sm:grid-cols-[12rem_1fr] sm:gap-6">
+                <span className="font-medium">{title}</span>
+                <span className="text-[15px] leading-relaxed text-neutral-600">{text}</span>
+              </li>
+            ))}
           </ul>
 
           <p className="mt-8 max-w-xl leading-relaxed text-neutral-600">{data.more}</p>
@@ -50,7 +41,7 @@ export default function About() {
                 key={src}
                 src={src}
                 alt={alt}
-                className="absolute inset-0 size-full rounded-3xl border-4 border-white bg-emerald-100 object-cover shadow-xl transition-transform duration-500"
+                className="absolute inset-0 size-full rounded-2xl border-4 border-white bg-emerald-100 object-cover shadow-[0_24px_48px_-24px_rgb(0_0_0/0.45)] ring-1 ring-neutral-900/5 transition-transform duration-500"
                 style={{ zIndex: photos.length - depth, transform: `translate(${depth * 56}px, ${depth * -24}px) rotate(${depth * 9}deg) scale(${1 - depth * 0.05})` }}
               />
             );

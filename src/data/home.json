@@ -7,6 +7,7 @@
   "placeholder": "Ask me anything...",
   "quickLinks": [
     { "label": "Me", "icon": "Smile", "color": "text-teal-600", "href": "#me" },
+    { "label": "Education", "icon": "GraduationCap", "color": "text-sky-600", "href": "#education" },
     { "label": "Experience", "icon": "BriefcaseBusiness", "color": "text-green-700", "href": "#experience" },
     { "label": "Projects", "icon": "Layers", "color": "text-indigo-600", "href": "#projects" },
     { "label": "Fun", "icon": "PartyPopper", "color": "text-fuchsia-600", "href": "#fun" },

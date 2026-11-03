@@ -13,10 +13,7 @@ export default function Experience() {
           {data.jobs.map(({ role, company, period, points }) => (
             <li key={company} className="grid gap-x-12 gap-y-4 border-b border-neutral-900/10 py-10 md:grid-cols-[13rem_1fr]">
               <div>
-                <p className="text-sm tabular-nums text-neutral-500">
-                  {period.includes('Present') && <span className="mr-2 inline-block size-1.5 -translate-y-px rounded-full bg-emerald-500" />}
-                  {period}
-                </p>
+                <p className="text-sm tabular-nums text-neutral-500">{period}</p>
                 <p className="mt-1 font-medium">{company}</p>
               </div>
               <article>
