@@ -1,22 +1,19 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 
-// Random index other than the current one (when there is a choice).
-const shuffle = (current, length) => (current + 1 + Math.floor(Math.random() * (length - 1 || 1))) % length;
-
-// Plays a playlist in random order forever, starting as soon as the browser allows sound.
-export default function usePlayer(tracks, startVolume = 0.2) {
+// Plays the playlist in order on a loop, starting from a random song,
+// as soon as the browser allows sound.
+export default function usePlayer(tracks, startVolume = 0.25) {
   const [audio] = useState(() => new Audio());
   const [index, setIndex] = useState(() => Math.floor(Math.random() * tracks.length));
   const [playing, setPlaying] = useState(false);
   const [volume, setVolume] = useState(startVolume);
-  const history = useRef([]);
+  const step = (by) => setIndex((i) => (i + by + tracks.length) % tracks.length);
 
   useEffect(() => {
     audio.volume = volume;
   }, [audio, volume]);
 
   useEffect(() => {
-    if (history.current.at(-1) !== index) history.current.push(index);
     const unlock = new AbortController();
     audio.src = tracks[index].src;
     audio.play().catch((error) => {
@@ -35,7 +32,7 @@ export default function usePlayer(tracks, startVolume = 0.2) {
     const handlers = {
       play: () => setPlaying(true),
       pause: () => setPlaying(false),
-      ended: () => setIndex((i) => shuffle(i, tracks.length)),
+      ended: () => setIndex((i) => (i + 1) % tracks.length),
     };
     Object.entries(handlers).forEach(([event, fn]) => audio.addEventListener(event, fn));
     return () => {
@@ -45,15 +42,6 @@ export default function usePlayer(tracks, startVolume = 0.2) {
   }, [audio, tracks.length]);
 
   const toggle = () => (audio.paused ? audio.play().catch(() => {}) : audio.pause());
-  const next = () => setIndex((i) => shuffle(i, tracks.length));
-  const prev = () => {
-    if (history.current.length < 2) {
-      audio.currentTime = 0;
-      return;
-    }
-    history.current.pop();
-    setIndex(history.current.at(-1));
-  };
 
-  return { track: tracks[index], playing, volume, setVolume, toggle, next, prev };
+  return { track: tracks[index], playing, volume, setVolume, toggle, next: () => step(1), prev: () => step(-1) };
 }

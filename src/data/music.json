@@ -1,4 +1,5 @@
 {
+  "hint": { "mouse": "Click anywhere to play music", "touch": "Tap anywhere to play music" },
   "tracks": [
     {
       "title": "Snap",

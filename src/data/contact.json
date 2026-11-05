@@ -7,9 +7,9 @@
   "coffeeChat": "Coffee chat",
   "bookMeeting": "Book a meeting",
   "links": [
-    { "icon": "mail", "label": "Email", "href": "mailto:your-email@example.com" },
-    { "icon": "linkedin", "label": "LinkedIn", "href": "https://www.linkedin.com/in/your-profile" },
+    { "icon": "mail", "label": "Email", "href": "mailto:vipsakamani11@gmail.com" },
+    { "icon": "linkedin", "label": "LinkedIn", "href": "https://www.linkedin.com/in/vk987/" },
     { "icon": "github", "label": "GitHub", "href": "https://github.com/vive12345" },
-    { "icon": "leetcode", "label": "LeetCode", "href": "https://leetcode.com/u/your-username" }
+    { "icon": "leetcode", "label": "LeetCode", "href": "https://leetcode.com/u/viza12345/" }
   ]
 }

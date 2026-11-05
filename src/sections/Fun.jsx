@@ -1,51 +1,62 @@
 import { useEffect, useRef, useState } from 'react';
-import { Bug, Crown, Dices, Play } from 'lucide-react';
+import { Crown, Dices, Play } from 'lucide-react';
 import SectionHeading from '../components/SectionHeading';
 import useLeaderboard from '../hooks/useLeaderboard';
+import { HEIGHT, draw, jump, newGame, scoreOf, setupCanvas, update } from '../game/deployDash';
 import data from '../data/fun.json';
 
-const CELLS = 16;
-const DURATION = 30;
 const pick = (list) => list[Math.floor(Math.random() * list.length)];
 const randomName = () => `${pick(data.adjectives)} ${pick(data.animals)}`;
 
-// "Bug Smash": bugs pop up on a 4×4 board; tap them before they vanish.
 export default function Fun() {
   const { scores, submit } = useLeaderboard();
   const [name, setName] = useState(() => localStorage.getItem('player') || randomName());
   const [phase, setPhase] = useState('idle'); // idle → playing → over
   const [score, setScore] = useState(0);
-  const [timeLeft, setTimeLeft] = useState(DURATION);
-  const [bugs, setBugs] = useState([]);
-  const scoreRef = useRef(0);
+  const canvasRef = useRef(null);
+
+  // Show the bot standing still before the first game.
+  useEffect(() => {
+    const { ctx, width } = setupCanvas(canvasRef.current);
+    draw(ctx, width, newGame());
+  }, []);
 
   useEffect(() => {
     if (phase !== 'playing') return;
-    const start = performance.now();
-    const tick = setInterval(() => {
-      const now = performance.now();
-      const elapsed = (now - start) / 1000;
-      if (elapsed >= DURATION) {
-        clearInterval(tick);
-        setTimeLeft(0);
-        setBugs([]);
+    const canvas = canvasRef.current;
+    const { ctx, width } = setupCanvas(canvas);
+    const game = newGame();
+    const onKey = (e) => {
+      if (e.code !== 'Space' && e.code !== 'ArrowUp') return;
+      e.preventDefault(); // keep Space from scrolling the page while playing
+      jump(game);
+    };
+    const onTap = () => jump(game);
+    addEventListener('keydown', onKey);
+    canvas.addEventListener('pointerdown', onTap);
+
+    let last = performance.now();
+    let frame;
+    const loop = (now) => {
+      const crashed = update(game, Math.min((now - last) / 1000, 0.05), width);
+      last = now;
+      draw(ctx, width, game);
+      const current = scoreOf(game);
+      setScore(current);
+      if (crashed) {
         setPhase('over');
-        if (scoreRef.current) submit(name, scoreRef.current);
+        if (current) submit(name, current);
         return;
       }
-      setTimeLeft(Math.ceil(DURATION - elapsed));
-      setBugs((alive) => {
-        const next = alive.filter((bug) => bug.until > now);
-        const free = [...Array(CELLS).keys()].filter((cell) => !next.some((bug) => bug.cell === cell));
-        // Bugs appear more often and vanish faster as the clock runs down.
-        if (free.length && Math.random() < 0.3 + elapsed / 60) {
-          const golden = Math.random() < 0.1;
-          next.push({ id: now, cell: pick(free), golden, until: now + (golden ? 700 : 1200) - elapsed * 15 });
-        }
-        return next;
-      });
-    }, 150);
-    return () => clearInterval(tick);
+      frame = requestAnimationFrame(loop);
+    };
+    frame = requestAnimationFrame(loop);
+
+    return () => {
+      cancelAnimationFrame(frame);
+      removeEventListener('keydown', onKey);
+      canvas.removeEventListener('pointerdown', onTap);
+    };
   }, [phase, name, submit]);
 
   const start = (e) => {
@@ -53,18 +64,8 @@ export default function Fun() {
     const player = name.trim().slice(0, 20) || randomName();
     setName(player);
     localStorage.setItem('player', player);
-    scoreRef.current = 0;
     setScore(0);
-    setTimeLeft(DURATION);
     setPhase('playing');
-  };
-
-  const smash = (bug) => {
-    if (bug.hit) return;
-    bug.hit = true;
-    setBugs((alive) => alive.filter((b) => b.id !== bug.id));
-    scoreRef.current += bug.golden ? 3 : 1;
-    setScore(scoreRef.current);
   };
 
   return (
@@ -73,57 +74,42 @@ export default function Fun() {
         <SectionHeading number={data.number}>{data.heading}</SectionHeading>
 
         <div className="mt-12 grid gap-12 md:grid-cols-[1fr_20rem] md:gap-20">
-          <div>
+          <div className="min-w-0">
             <h3 className="text-xl font-semibold tracking-tight">{data.title}</h3>
             <p className="mt-2 max-w-xl text-[15px] leading-relaxed text-neutral-600">{data.text}</p>
 
-            <div className="mt-6 max-w-md">
-              <div className="mb-3 flex justify-between text-sm tabular-nums text-neutral-500">
-                <span>
+            <div className="mt-6">
+              <div className="mb-3 flex justify-between gap-4 text-sm text-neutral-500">
+                <span className="pointer-coarse:hidden">{data.controls.keyboard}</span>
+                <span className="hidden pointer-coarse:inline">{data.controls.touch}</span>
+                <span className="tabular-nums">
                   {data.score} <b className="text-neutral-900">{score}</b>
-                </span>
-                <span>
-                  {data.time} <b className="text-neutral-900">{timeLeft}s</b>
                 </span>
               </div>
 
-              <div className="relative grid touch-manipulation select-none grid-cols-4 gap-2 rounded-2xl border border-neutral-900/10 bg-white p-2">
-                {[...Array(CELLS).keys()].map((cell) => {
-                  const bug = bugs.find((b) => b.cell === cell);
-                  return (
-                    <div key={cell} className="grid aspect-square place-items-center rounded-xl bg-neutral-100/70">
-                      {bug && (
-                        <button
-                          key={bug.id}
-                          onPointerDown={() => smash(bug)}
-                          aria-label="Smash bug"
-                          className={`grid size-3/4 animate-pop cursor-pointer place-items-center rounded-full ${bug.golden ? 'bg-amber-100 text-amber-500' : 'bg-emerald-100 text-emerald-700'}`}
-                        >
-                          <Bug className="size-1/2" />
-                        </button>
-                      )}
-                    </div>
-                  );
-                })}
+              <div className="relative overflow-hidden rounded-2xl border border-neutral-900/10 bg-white">
+                <canvas ref={canvasRef} className="block w-full touch-manipulation" style={{ height: HEIGHT }} />
 
                 {phase !== 'playing' && (
-                  <form onSubmit={start} className="absolute inset-0 grid place-content-center justify-items-center gap-4 rounded-2xl bg-white/85 p-6 text-center backdrop-blur-sm">
+                  <form onSubmit={start} className="absolute inset-0 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 bg-white/80 p-4 text-center backdrop-blur-sm">
                     {phase === 'over' && (
-                      <p>
-                        <span className="block text-sm text-neutral-500">{data.yourScore}</span>
-                        <span className="text-5xl font-bold tabular-nums">{score}</span>
+                      <p className="w-full">
+                        <span className="text-sm text-neutral-500">{data.yourScore} </span>
+                        <span className="text-3xl font-bold tabular-nums">{score}</span>
                       </p>
                     )}
-                    <label htmlFor="player" className="text-xs font-semibold uppercase tracking-widest text-neutral-500">
-                      {data.namePrompt}
-                    </label>
-                    <div className="flex items-center gap-1 rounded-lg border border-neutral-900/15 bg-white p-1 pl-3">
-                      <input id="player" value={name} onChange={(e) => setName(e.target.value)} maxLength={20} className="w-40 bg-transparent text-sm outline-none" />
-                      <button type="button" onClick={() => setName(randomName())} aria-label={data.randomName} title={data.randomName} className="grid size-8 cursor-pointer place-items-center rounded-md text-neutral-500 hover:bg-neutral-100 hover:text-neutral-900">
-                        <Dices size={18} />
-                      </button>
+                    <div className="grid justify-items-center gap-2">
+                      <label htmlFor="player" className="text-xs font-semibold uppercase tracking-widest text-neutral-500">
+                        {data.namePrompt}
+                      </label>
+                      <div className="flex items-center gap-1 rounded-lg border border-neutral-900/15 bg-white p-1 pl-3">
+                        <input id="player" value={name} onChange={(e) => setName(e.target.value)} maxLength={20} className="w-40 bg-transparent text-sm outline-none" />
+                        <button type="button" onClick={() => setName(randomName())} aria-label={data.randomName} title={data.randomName} className="grid size-8 cursor-pointer place-items-center rounded-md text-neutral-500 hover:bg-neutral-100 hover:text-neutral-900">
+                          <Dices size={18} />
+                        </button>
+                      </div>
                     </div>
-                    <button className="inline-flex h-11 cursor-pointer items-center gap-2 rounded-lg bg-neutral-900 px-5 text-sm font-medium text-white transition hover:bg-neutral-800 active:scale-[0.98]">
+                    <button className="inline-flex h-11 cursor-pointer items-center gap-2 self-end rounded-lg bg-neutral-900 px-5 text-sm font-medium text-white transition hover:bg-neutral-800 active:scale-[0.98]">
                       <Play size={14} fill="currentColor" />
                       {phase === 'over' ? data.again : data.start}
                     </button>

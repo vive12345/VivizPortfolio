@@ -1,5 +1,5 @@
-import { useRef } from 'react';
-import { Pause, Play, SkipBack, SkipForward, Volume2, VolumeX } from 'lucide-react';
+import { useRef, useState } from 'react';
+import { Music2, Pause, Play, SkipBack, SkipForward, Volume2, VolumeX } from 'lucide-react';
 import usePlayer from '../hooks/usePlayer';
 import music from '../data/music.json';
 
@@ -10,6 +10,15 @@ const round = 'grid size-7 cursor-pointer place-items-center rounded-full';
 export default function MusicPlayer() {
   const { track, playing, volume, setVolume, toggle, next, prev } = usePlayer(music.tracks);
   const box = useRef(null);
+  const [heard, setHeard] = useState(false);
+  if (playing && !heard) setHeard(true);
+
+  // Speaker icon mutes, and unmutes back to the volume used before muting.
+  const lastVolume = useRef(volume);
+  const toggleMute = () => {
+    if (volume > 0) lastVolume.current = volume;
+    setVolume(volume > 0 ? 0 : lastVolume.current || 0.25);
+  };
 
   const startDrag = (e) => {
     const el = box.current;
@@ -53,8 +62,10 @@ export default function MusicPlayer() {
             <SkipForward size={14} />
           </button>
         </div>
-        <label className="flex items-center gap-2 px-2 pb-1 text-neutral-500">
-          {volume > 0 ? <Volume2 size={14} className="shrink-0" /> : <VolumeX size={14} className="shrink-0" />}
+        <div className="flex items-center gap-2 px-2 pb-1 text-neutral-500">
+          <button onClick={toggleMute} aria-label={volume > 0 ? 'Mute' : 'Unmute'} title={volume > 0 ? 'Mute' : 'Unmute'} className="-m-1 grid size-6 shrink-0 cursor-pointer place-items-center rounded-full hover:bg-neutral-100 hover:text-neutral-900">
+            {volume > 0 ? <Volume2 size={14} /> : <VolumeX size={14} />}
+          </button>
           <input
             type="range"
             min="0"
@@ -65,8 +76,17 @@ export default function MusicPlayer() {
             aria-label="Volume"
             className="h-1 w-full cursor-pointer accent-neutral-900"
           />
-        </label>
+        </div>
       </div>
+
+      {/* Browsers block sound until the first click or tap, so nudge visitors until the music has started once. */}
+      {!heard && (
+        <p className="flex animate-pop items-center gap-1.5 whitespace-nowrap rounded-full bg-neutral-900 px-3 py-1.5 text-xs font-medium text-white shadow-lg">
+          <Music2 size={12} className="animate-pulse" />
+          <span className="pointer-coarse:hidden">{music.hint.mouse}</span>
+          <span className="hidden pointer-coarse:inline">{music.hint.touch}</span>
+        </p>
+      )}
     </div>
   );
 }

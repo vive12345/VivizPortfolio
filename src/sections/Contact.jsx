@@ -15,6 +15,18 @@ const icons = {
   linkedin: brand('M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z'),
 };
 
+// Opens Calendly in a popup over the site. Its script loads only on the first click;
+// if it can't load, the link opens Calendly in a new tab instead.
+const CALENDLY = 'https://assets.calendly.com/assets/external/widget';
+const openCalendly = (e) => {
+  e.preventDefault();
+  const open = () => window.Calendly.initPopupWidget({ url: data.calendly });
+  if (window.Calendly) return open();
+  const css = Object.assign(document.createElement('link'), { rel: 'stylesheet', href: `${CALENDLY}.css` });
+  const js = Object.assign(document.createElement('script'), { src: `${CALENDLY}.js`, onload: open, onerror: () => window.open(data.calendly, '_blank') });
+  document.head.append(css, js);
+};
+
 export default function Contact() {
   return (
     <section id="contact" className="relative scroll-mt-8 px-6 pb-28 pt-28">
@@ -30,13 +42,13 @@ export default function Contact() {
             <p className="mt-5 max-w-md leading-relaxed text-neutral-600">{data.text}</p>
             <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4">
               {/* Solid button with a soft inner highlight; the arrow slides forward on hover. */}
-              <a href={data.calendly} target="_blank" rel="noreferrer" className="group inline-flex h-11 items-center gap-2.5 rounded-lg bg-neutral-900 px-5 text-sm font-medium tracking-wide text-white shadow-[inset_0_1px_0_rgb(255_255_255/0.12),0_1px_2px_rgb(0_0_0/0.2),0_8px_20px_-8px_rgb(0_0_0/0.4)] transition hover:bg-neutral-800 hover:shadow-[inset_0_1px_0_rgb(255_255_255/0.12),0_1px_2px_rgb(0_0_0/0.2),0_12px_24px_-8px_rgb(0_0_0/0.5)] active:scale-[0.98]">
+              <a href={data.calendly} onClick={openCalendly} target="_blank" rel="noreferrer" className="group inline-flex h-11 items-center gap-2.5 rounded-lg bg-neutral-900 px-5 text-sm font-medium tracking-wide text-white shadow-[inset_0_1px_0_rgb(255_255_255/0.12),0_1px_2px_rgb(0_0_0/0.2),0_8px_20px_-8px_rgb(0_0_0/0.4)] transition hover:bg-neutral-800 hover:shadow-[inset_0_1px_0_rgb(255_255_255/0.12),0_1px_2px_rgb(0_0_0/0.2),0_12px_24px_-8px_rgb(0_0_0/0.5)] active:scale-[0.98]">
                 <Coffee size={16} className="text-white/70" />
                 {data.coffeeChat}
                 <ArrowRight size={15} className="-ml-0.5 text-white/70 transition-transform duration-300 group-hover:translate-x-1 group-hover:text-white" />
               </a>
               {/* Text link with an underline that draws in on hover. */}
-              <a href={data.calendly} target="_blank" rel="noreferrer" className="group relative inline-flex items-center gap-2.5 py-1 text-base font-medium">
+              <a href={data.calendly} onClick={openCalendly} target="_blank" rel="noreferrer" className="group relative inline-flex items-center gap-2.5 py-1 text-base font-medium">
                 <CalendarDays size={19} className="text-neutral-500" />
                 {data.bookMeeting}
                 <span className="absolute inset-x-0 -bottom-0.5 h-px origin-left scale-x-0 bg-neutral-900 transition-transform duration-300 group-hover:scale-x-100" />

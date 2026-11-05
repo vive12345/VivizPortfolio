@@ -5,9 +5,16 @@
   --animate-breathe: breathe 5s ease-in-out infinite;
   --animate-wave: wave 2s ease-in-out 0.4s;
   --animate-pop: pop 0.2s ease-out;
+  --animate-wiggle: wiggle 1.6s ease-in-out infinite;
 
   @keyframes float {
     50% { transform: translateY(-8px); }
+  }
+  /* An insistent shake with a short rest, hard to ignore until it's clicked. */
+  @keyframes wiggle {
+    0%, 50%, 100% { transform: rotate(0); }
+    7%, 21%, 35% { transform: rotate(-6deg) scale(1.05); }
+    14%, 28%, 42% { transform: rotate(6deg) scale(1.05); }
   }
   @keyframes pop {
     from { transform: scale(0); }
