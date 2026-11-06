@@ -10,7 +10,7 @@ export default function Experience() {
 
         {/* One row per job, separated by hairlines: dates and company on the left, the work on the right. */}
         <ol className="mt-12 border-t border-neutral-900/10">
-          {data.jobs.map(({ role, company, period, points }) => (
+          {data.jobs.map(({ role, company, period, summary, points }) => (
             <li key={company} className="grid gap-x-12 gap-y-4 border-b border-neutral-900/10 py-10 md:grid-cols-[13rem_1fr]">
               <div>
                 <p className="text-sm tabular-nums text-neutral-500">{period}</p>
@@ -18,6 +18,7 @@ export default function Experience() {
               </div>
               <article>
                 <h3 className="text-xl font-semibold tracking-tight">{role}</h3>
+                <p className="mt-1 italic text-neutral-500">{summary}</p>
                 <BulletList items={points} />
               </article>
             </li>

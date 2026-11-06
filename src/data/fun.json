@@ -1,5 +1,5 @@
 {
-  "number": "06",
+  "number": "07",
   "heading": "Fun",
   "title": "Deploy Dash",
   "text": "Help the little build bot dodge bugs and errors on its way to production. It speeds up the further you go. Beat the high score and your name goes to the top of the leaderboard.",
@@ -10,6 +10,7 @@
   "randomName": "Random name",
   "start": "Start game",
   "again": "Play again",
+  "close": "Close",
   "leaderboard": "Leaderboard",
   "champion": "Highest score",
   "empty": "No scores yet. Be the first!",

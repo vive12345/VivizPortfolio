@@ -2,15 +2,30 @@
   "number": "01",
   "heading": "About Me",
   "photos": [
-    { "src": "https://picsum.photos/seed/vipsa-1/600/750", "alt": "Photo of Vipsa" },
-    { "src": "https://picsum.photos/seed/vipsa-2/600/750", "alt": "Another photo of Vipsa" }
+    { "src": "/images/me-2.webp", "alt": "Vipsa in front of red autumn leaves" },
+    { "src": "/images/me-1.webp", "alt": "Vipsa standing in a building lobby" },
+    { "src": "/images/me-3.webp", "alt": "Vipsa on a boat on the Chicago River" }
   ],
-  "intro": "I'm a software engineer who loves turning ideas into fast, friendly and reliable products. I enjoy working across the stack, from clean interfaces to the systems behind them.",
-  "expertiseTitle": "My expertise across various areas",
+  "expertiseTitle": "What I Bring to the Table",
   "expertise": [
-    { "title": "Full-Stack Development", "text": "React, Node.js and modern tooling, from idea to deployment." },
-    { "title": "Backend & APIs", "text": "Clean, well-designed APIs and scalable backend systems." },
-    { "title": "UI Engineering", "text": "Polished, accessible and interactive user interfaces." }
+    {
+      "title": "Passion for Learning",
+      "text": "Simply... I just love what I do."
+    },
+    {
+      "title": "Backend and Cloud",
+      "text": "I enjoy building reliable APIs, scalable backend systems and event-driven applications using AWS."
+    },
+    {
+      "title": "Full-Stack and AI",
+      "text": "I love building complete apps and connecting AI with real-world software to make it more useful."
+    }
   ],
-  "more": "Outside of code, you'll find me exploring new music, travelling, and trying out creative side projects. I believe in learning something new every day and bringing curiosity and kindness to every team I'm part of."
+  "more": "Outside of coding, I love discovering music, traveling and working on creative ideas. I believe there's always something new to learn and that's what keeps me excited about what I do.",
+  "openToWork": [
+    "I'm open to work and looking for my next opportunity as a Software Development Engineer (SDE), Full-Stack Developer or AI Engineer.",
+    "I'm happy to relocate anywhere in the U.S. and can start within a few weeks.",
+    "Know a role that could be a good fit ? Please reach out at"
+  ],
+  "email": "vipsakamani11@gmail.com"
 }

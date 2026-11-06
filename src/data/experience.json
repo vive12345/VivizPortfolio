@@ -6,6 +6,7 @@
       "role": "Full Stack Developer",
       "company": "SaayamForAll",
       "period": "Feb 2026 — Present",
+      "summary": "Building AI-powered features for our platform that connects people requesting help with volunteers and support services.",
       "points": [
         "Implement a Python AI module to summarize user file attachments using LangChain and LLMs, exposed via RESTful API endpoints for frontend integration, reducing manual review time from **10 min to 2 min**",
         "Deploy an AI classification service on AWS Lambda using LLMs and prompting to sort help requests into **50+ subcategories**",
@@ -16,6 +17,7 @@
       "role": "Software Developer",
       "company": "Arizona State University",
       "period": "Dec 2024 — Dec 2025",
+      "summary": "Worked on university systems that handle student inquiries, Salesforce data and daily operations.",
       "points": [
         "Engineered an event-driven AWS workflow (Lambda, SQS, DLQ) with asynchronous message processing that auto-routes student inquiries to correct departments, reducing follow-up time from **5 days to 1 day**",
         "Developed REST APIs to automate CRM imports, processing **10K+ requests** and cutting manual setup time from **3600s to 10s**",
@@ -27,16 +29,18 @@
       "role": "Software Engineer",
       "company": "Rapidise",
       "period": "May 2023 — Dec 2023",
+      "summary": "A payment management platform that helps businesses track payouts and resolve payment disputes.",
       "points": [
-        "Developed & scaled data infrastructure powering dashboard for a multi-million-dollar payment platform serving **2k+ payouts**",
-        "Designed REST APIs in Kotlin/Smithy, using AWS Cognito & CloudFormation to streamline infrastructure & improve reliability",
-        "Refactored and built React/TypeScript components with Jest unit tests reaching **80% code coverage**, integrated into the CI/CD pipeline to boost dashboard performance"
+        "Developed a backend microservice supporting a **multi-million-dollar** payment dispute management system, helping operations teams to track **2K+ payout transactions** and monitor statuses through a centralized analytical dashboard",
+        "Architected Kotlin REST APIs secured with AWS Cognito (OAuth 2.0/JWT) and automated deployments via CloudFormation, replacing manual infrastructure setup with **consistent, rollback-safe releases**",
+        "Refactored React/TypeScript dashboard components for faster rendering and enforced Jest unit tests at **90% coverage** in CI/CD to catch bugs before release"
       ]
     },
     {
       "role": "Software Developer",
       "company": "EzTechStack",
       "period": "Jan 2023 — Apr 2023",
+      "summary": "Developed backend services for a large-scale e-commerce platform, focusing on faster product searches, reliable transactions and automated testing.",
       "points": [
         "Built a Java e-commerce microservice on Spring Boot and Hibernate ORM, for a platform serving **266K+ monthly active users**",
         "Optimized Elasticsearch queries and Redis cache to cut API response time by **10%** while lowering database load at peak traffic",

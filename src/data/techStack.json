@@ -1,0 +1,17 @@
+{
+  "number": "05",
+  "heading": "Tech Stack",
+  "note": [
+    "As a software engineer, I believe in staying flexible with any tech stack.",
+    "These are the tools I've worked with and I can pick up new technologies quickly."
+  ],
+  "groups": [
+    { "domain": "Languages", "tools": ["Python", "Java", "JavaScript", "TypeScript", "Kotlin", "SQL"] },
+    { "domain": "Frontend", "tools": ["React", "HTML", "CSS", "Tailwind CSS"] },
+    { "domain": "Backend", "tools": ["Spring Boot", "FastAPI", "Django", "Node.js", "Hibernate ORM", "REST APIs", "Microservices"] },
+    { "domain": "Cloud and DevOps", "tools": ["AWS Lambda", "SQS", "S3", "API Gateway", "Cognito", "CloudFormation", "CI/CD"] },
+    { "domain": "Databases and Caching", "tools": ["PostgreSQL", "Redis", "Elasticsearch"] },
+    { "domain": "AI and ML", "tools": ["LLMs", "LangChain", "RAG", "Embeddings", "Pinecone", "Vector DBs", "Hugging Face", "Prompt Engineering"] },
+    { "domain": "Testing", "tools": ["Jest", "Selenium", "Unit Testing", "Integration Testing", "Smoke Testing"] }
+  ]
+}

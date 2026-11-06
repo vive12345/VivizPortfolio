@@ -14,7 +14,7 @@ It's a single-page website with these sections:
 
 **Built with:** React 19, Vite, and Tailwind CSS v4.
 
-No backend is needed unless you want a shared leaderboard for all visitors.
+It's hosted on Cloudflare Pages, with a small Cloudflare D1 database for the shared game leaderboard.
 
 ## Run It Locally
 
@@ -90,30 +90,34 @@ Reference them in the JSON files using paths that start with `/`:
 
 MP3s at around 128 kbps help keep the website lightweight. Only share music you have the rights to use publicly.
 
-## Shared Game Leaderboard (Optional)
+## Deploy on Cloudflare Pages
 
-By default, each visitor's game scores are saved in their own browser. To show **one leaderboard for everyone**, connect Supabase:
+The site is hosted on **Cloudflare Pages**, connected to this GitHub repository. Every push to `main` deploys automatically.
 
-1. Create a free project at [supabase.com](https://supabase.com).
-2. Run the SQL from [`.env.example`](.env.example) in the Supabase **SQL Editor**.
-3. Copy `.env.example` to `.env`.
-4. Add your **Project URL** and **anon key** from **Project Settings → API**.
-5. Add the same environment variables to your hosting provider.
+1. In the [Cloudflare dashboard](https://dash.cloudflare.com), go to **Workers & Pages → Create → Pages → Connect to Git** and pick this repository.
+2. Use these build settings:
 
-The `.env` file is Git-ignored. The frontend anon key is still public, so make sure your Supabase database permissions are configured correctly.
+   | Setting | Value |
+   | --- | --- |
+   | Framework preset | React (Vite) |
+   | Build command | `npm run build` |
+   | Output directory | `dist` |
+   | Environment variable | `NODE_VERSION` = `22` |
 
-## Deploy
-
-You can deploy the website to a static hosting service like **Vercel** or **Cloudflare Pages**.
-
-Import your GitHub repository and use:
-
-| Setting | Value |
-| --- | --- |
-| Build command | `npm run build` |
-| Output directory | `dist` |
+3. **Analytics (optional):** in the Pages project, open **Metrics → Web Analytics** and enable it. It's free and cookie-free.
 
 The footer's **Last updated** month and year refresh automatically with each build.
+
+## Shared Game Leaderboard
+
+The leaderboard is served by [`functions/api/scores.js`](functions/api/scores.js), a Cloudflare Pages Function that stores scores in a free **Cloudflare D1** database. It rejects impossible scores and blocked words in names.
+
+1. In Cloudflare, go to **Storage & Databases → D1 → Create database** (for example `portfolio-leaderboard`).
+2. Open the database's **Console**, paste the contents of [`schema.sql`](schema.sql) and run it.
+3. In the Pages project, go to **Settings → Bindings → Add → D1 database**, set the variable name to `DB` and select the database.
+4. Redeploy the latest deployment so the binding takes effect.
+
+When running locally with `npm run dev`, scores are saved in your own browser instead.
 
 ## Project Structure
 
@@ -125,7 +129,9 @@ src/
   game/          Deploy Dash drawing and physics
   data/          Website content (JSON files)
 
+functions/       Cloudflare Pages Functions (leaderboard API)
 public/          Images and music
+schema.sql       Leaderboard database table
 ```
 
 **Quick guide:** Edit `src/data/` to change the content, `src/components/` or `src/sections/` to change the design, and `public/` to add images or music.

@@ -7,6 +7,7 @@ import ForYou from './sections/ForYou';
 import Fun from './sections/Fun';
 import Home from './sections/Home';
 import Projects from './sections/Projects';
+import TechStack from './sections/TechStack';
 
 export default function App() {
   return (
@@ -16,6 +17,7 @@ export default function App() {
       <Education />
       <Experience />
       <Projects />
+      <TechStack />
       <Contact />
       <Fun />
       <ForYou />

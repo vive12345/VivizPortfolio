@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { Crown, Dices, Play } from 'lucide-react';
+import { Crown, Dices, Play, X } from 'lucide-react';
 import SectionHeading from '../components/SectionHeading';
 import useLeaderboard from '../hooks/useLeaderboard';
 import { HEIGHT, draw, jump, newGame, scoreOf, setupCanvas, update } from '../game/deployDash';
@@ -10,15 +10,36 @@ const randomName = () => `${pick(data.adjectives)} ${pick(data.animals)}`;
 
 export default function Fun() {
   const { scores, submit } = useLeaderboard();
-  const [name, setName] = useState(() => localStorage.getItem('player') || randomName());
+  // A fresh random name is suggested every time the start screen appears.
+  const [name, setName] = useState(randomName);
   const [phase, setPhase] = useState('idle'); // idle → playing → over
   const [score, setScore] = useState(0);
+  const sectionRef = useRef(null);
   const canvasRef = useRef(null);
 
-  // Show the bot standing still before the first game.
+  const reset = () => {
+    setName(randomName());
+    setPhase('idle');
+    setScore(0);
+  };
+
+  // Show the bot standing still on the start screen.
   useEffect(() => {
+    if (phase !== 'idle') return;
     const { ctx, width } = setupCanvas(canvasRef.current);
     draw(ctx, width, newGame());
+  }, [phase]);
+
+  // Leaving the game (scrolling away or switching tabs) ends it and clears the score.
+  useEffect(() => {
+    const observer = new IntersectionObserver(([entry]) => !entry.isIntersecting && reset());
+    observer.observe(sectionRef.current);
+    const onHide = () => document.hidden && reset();
+    document.addEventListener('visibilitychange', onHide);
+    return () => {
+      observer.disconnect();
+      document.removeEventListener('visibilitychange', onHide);
+    };
   }, []);
 
   useEffect(() => {
@@ -46,6 +67,7 @@ export default function Fun() {
       if (crashed) {
         setPhase('over');
         if (current) submit(name, current);
+        setName(randomName());
         return;
       }
       frame = requestAnimationFrame(loop);
@@ -61,15 +83,13 @@ export default function Fun() {
 
   const start = (e) => {
     e.preventDefault();
-    const player = name.trim().slice(0, 20) || randomName();
-    setName(player);
-    localStorage.setItem('player', player);
+    setName(name.trim().slice(0, 20) || randomName());
     setScore(0);
     setPhase('playing');
   };
 
   return (
-    <section id="fun" className="scroll-mt-8 px-6 pb-28 pt-8">
+    <section ref={sectionRef} id="fun" className="scroll-mt-8 px-6 pb-28 pt-8">
       <div className="mx-auto max-w-6xl">
         <SectionHeading number={data.number}>{data.heading}</SectionHeading>
 
@@ -91,29 +111,37 @@ export default function Fun() {
                 <canvas ref={canvasRef} className="block w-full touch-manipulation" style={{ height: HEIGHT }} />
 
                 {phase !== 'playing' && (
-                  <form onSubmit={start} className="absolute inset-0 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 bg-white/80 p-4 text-center backdrop-blur-sm">
+                  <form onSubmit={start} className="absolute inset-0 grid place-content-center justify-items-center gap-3 bg-white/80 p-4 text-center backdrop-blur-sm">
                     {phase === 'over' && (
-                      <p className="w-full">
-                        <span className="text-sm text-neutral-500">{data.yourScore} </span>
-                        <span className="text-3xl font-bold tabular-nums">{score}</span>
+                      <p className="grid">
+                        <span className="text-xs font-semibold uppercase tracking-widest text-neutral-500">{data.yourScore}</span>
+                        <span className="text-4xl font-bold tabular-nums text-emerald-600">{score}</span>
                       </p>
                     )}
-                    <div className="grid justify-items-center gap-2">
-                      <label htmlFor="player" className="text-xs font-semibold uppercase tracking-widest text-neutral-500">
-                        {data.namePrompt}
-                      </label>
+                    <label htmlFor="player" className="text-xs font-semibold uppercase tracking-widest text-neutral-500">
+                      {data.namePrompt}
+                    </label>
+                    {/* Name field and play button on one line. */}
+                    <div className="flex items-center gap-2">
                       <div className="flex items-center gap-1 rounded-lg border border-neutral-900/15 bg-white p-1 pl-3">
-                        <input id="player" value={name} onChange={(e) => setName(e.target.value)} maxLength={20} className="w-40 bg-transparent text-sm outline-none" />
+                        <input id="player" value={name} onChange={(e) => setName(e.target.value)} maxLength={20} className="w-32 bg-transparent text-sm outline-none sm:w-40" />
                         <button type="button" onClick={() => setName(randomName())} aria-label={data.randomName} title={data.randomName} className="grid size-8 cursor-pointer place-items-center rounded-md text-neutral-500 hover:bg-neutral-100 hover:text-neutral-900">
                           <Dices size={18} />
                         </button>
                       </div>
+                      <button className="inline-flex h-11 shrink-0 cursor-pointer items-center gap-2 rounded-lg bg-neutral-900 px-5 text-sm font-medium text-white transition hover:bg-neutral-800 active:scale-[0.98]">
+                        <Play size={14} fill="currentColor" />
+                        {phase === 'over' ? data.again : data.start}
+                      </button>
                     </div>
-                    <button className="inline-flex h-11 cursor-pointer items-center gap-2 self-end rounded-lg bg-neutral-900 px-5 text-sm font-medium text-white transition hover:bg-neutral-800 active:scale-[0.98]">
-                      <Play size={14} fill="currentColor" />
-                      {phase === 'over' ? data.again : data.start}
-                    </button>
                   </form>
+                )}
+
+                {/* Quit at any time, mid-game or after a crash, back to the start screen. */}
+                {phase !== 'idle' && (
+                  <button type="button" onClick={reset} aria-label={data.close} title={data.close} className="absolute right-3 top-3 grid size-8 cursor-pointer place-items-center rounded-full bg-white/80 text-neutral-500 transition-colors hover:bg-neutral-100 hover:text-neutral-900">
+                    <X size={18} />
+                  </button>
                 )}
               </div>
             </div>

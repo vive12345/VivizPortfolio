@@ -2,12 +2,24 @@
   "number": "04",
   "heading": "Projects",
   "linkLabel": "View project",
+  "stackLabel": "Tech stack:",
   "projects": [
     {
-      "title": "AI ChatBot",
+      "title": "AI-Powered Email Management Web App",
+      "subtitle": "Freelance Project",
+      "stack": ["LLMs", "Redis", "BullMQ", "RAG", "Embeddings", "Pinecone"],
+      "link": "",
+      "points": [
+        "Engineered a backend and AI-powered features to automate email organization, prioritization and personalized draft generation",
+        "Optimized asynchronous email processing using Redis & BullMQ to classify **5 emails per batch**, reducing LLM API requests by **up to 80%** and minimizing redundant token usage to lower AI processing costs",
+        "Implemented RAG pipeline via embeddings and Pinecone VectorDB to retrieve relevant email context & generate personalized AI drafts, reducing repetitive manual email writing"
+      ]
+    },
+    {
+      "title": "AI Assistant",
       "subtitle": "Industrial Project for Auto BIM Route and Mintplex Labs",
       "stack": ["Python", "Django", "React", "LLMs", "RAG", "VectorDB"],
-      "link": "https://github.com/your-username/your-project",
+      "link": "https://autobimroute.com/",
       "points": [
         "Owned the end-to-end document ingestion pipeline by building a Python REST endpoint on API Gateway and Lambda that validated and stored uploads in Amazon S3, improving experience and productivity",
         "Built and integrated a speaking avatar into a React frontend using Hugging Face model inference and browser-based TTS for lip-sync, eliminating **$3,000/month** in licensing costs"

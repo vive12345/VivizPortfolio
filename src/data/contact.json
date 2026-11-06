@@ -1,15 +1,16 @@
 {
-  "number": "05",
+  "number": "06",
   "heading": "Contact",
   "title": "Let's build something together.",
   "text": "I'm open to full-time Software Engineering roles and always happy to chat about new ideas, projects or opportunities. My inbox is always open.",
-  "calendly": "https://calendly.com/your-username",
+  "calendly": "https://calendly.com/vipsakamani11/30min",
   "coffeeChat": "Coffee chat",
   "bookMeeting": "Book a meeting",
   "links": [
-    { "icon": "mail", "label": "Email", "href": "mailto:vipsakamani11@gmail.com" },
+    { "icon": "mail", "label": "Email", "href": "https://mail.google.com/mail/?view=cm&fs=1&to=vipsakamani11@gmail.com" },
     { "icon": "linkedin", "label": "LinkedIn", "href": "https://www.linkedin.com/in/vk987/" },
     { "icon": "github", "label": "GitHub", "href": "https://github.com/vive12345" },
-    { "icon": "leetcode", "label": "LeetCode", "href": "https://leetcode.com/u/viza12345/" }
+    { "icon": "leetcode", "label": "LeetCode", "href": "https://leetcode.com/u/viza12345/" },
+    { "icon": "resume", "label": "Request resume", "href": "https://drive.google.com/file/d/1os9THs7wZdShIwAeEGMWZygXpEYLbupf/view?usp=sharing" }
   ]
 }
