@@ -1,6 +1,7 @@
 import { BriefcaseBusiness, ChevronRight, Cpu, FileText, Gift, GraduationCap, Layers, PartyPopper, Smile, UserSearch } from 'lucide-react';
 import Avatar from '../components/Avatar';
 import FluidCursor from '../components/FluidCursor';
+import scrollToSection from '../scrollToSection';
 import data from '../data/home.json';
 
 const icons = { Smile, GraduationCap, BriefcaseBusiness, Layers, Cpu, PartyPopper, Gift, UserSearch };
@@ -30,7 +31,7 @@ export default function Home() {
         {data.quickLinks.map(({ label, icon, color, href }) => {
           const Icon = icons[icon];
           return (
-            <a key={label} href={href} className="flex w-28 flex-col items-center gap-2 rounded-2xl border border-neutral-200 bg-white py-4 text-sm font-medium shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
+            <a key={label} href={href} onClick={scrollToSection} className="flex w-28 flex-col items-center gap-2 rounded-2xl border border-neutral-200 bg-white py-4 text-sm font-medium shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
               <Icon size={20} className={color} />
               {label}
             </a>

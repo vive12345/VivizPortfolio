@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { PartyPopper } from 'lucide-react';
 import Confetti from '../components/Confetti';
 import data from '../data/forYou.json';
+import scrollToSection from '../scrollToSection';
 
 // Closing note: fires confetti the first time a visitor scrolls to the end of the page.
 export default function ForYou() {
@@ -53,7 +54,7 @@ export default function ForYou() {
           <span>
             {data.footer} · {data.updated} {__UPDATED__}
           </span>
-          <a href="#" className="transition-colors hover:text-neutral-900">{data.backToTop}</a>
+          <a href="#" onClick={scrollToSection} className="transition-colors hover:text-neutral-900">{data.backToTop}</a>
         </footer>
       </div>
     </section>
